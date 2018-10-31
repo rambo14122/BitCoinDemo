@@ -1,14 +1,66 @@
-<ion-header>
+<ion-header >
   <ion-navbar>
     <ion-title>
-      Ionic Blank
+      BTC余额: <ion-icon name="logo-bitcoin"></ion-icon>{{data.assets}}
     </ion-title>
   </ion-navbar>
 </ion-header>
 
+<!--<ion-content padding>-->
+  <!--<div>-->
+    <!--<ion-segment [(ngModel)]="data.address">-->
+      <!--<ion-segment-button value="kittens">-->
+        <!--地址1-->
+      <!--</ion-segment-button>-->
+      <!--<ion-segment-button value="puppies">-->
+        <!--地址2-->
+      <!--</ion-segment-button>-->
+    <!--</ion-segment>-->
+  <!--</div>-->
+  <!--<address-segment address={{data.address[0]}}></address-segment>-->
+<!--</ion-content>-->
+
 <ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+  <ion-card>
+
+    <ion-card-header>
+      <ion-icon name="locate"></ion-icon>
+      地址簿
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-item no-lines>
+        <ion-select [(ngModel)]="selectedAddr">
+          <ion-option *ngFor="let addr of data.address" value="{{addr}}">{{addr}}</ion-option>
+        </ion-select>
+        <ion-icon item-end name="camera" large (click)="scanQR()"></ion-icon>
+      </ion-item>
+
+      <ion-grid>
+        <ion-row>
+          <ion-col col-1>
+            <ion-icon item-left  small name="logo-bitcoin"></ion-icon>
+          </ion-col>
+          <ion-col col-4>
+            <ion-input type="number" placeholder="BitCoin" (ionChange)="handleBitCoinChange()" [(ngModel)]="bitCoinAmount"></ion-input>
+          </ion-col>
+          <ion-col class="equalSign"col-2>
+            =
+          </ion-col>
+          <ion-col col-1>
+            <ion-icon name="logo-yen"></ion-icon>
+          </ion-col>
+          <ion-col>
+            <ion-input type="number" placeholder="RMB" (ionChange)="handleYenChange()"[(ngModel)]="yenAmount"></ion-input>
+          </ion-col>
+        </ion-row>
+        <ion-row >
+          <ion-col text-center>
+            <button ion-button round outline small> Submit</button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+    </ion-card-content>
+  </ion-card>
 </ion-content>
